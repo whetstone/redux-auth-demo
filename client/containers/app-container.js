@@ -3,7 +3,13 @@ import React from 'react';
 export default class App {
     render() {
         return (
-            <div>hi</div>
+            <section>
+                <header></header>
+
+                <section>
+                    {this.props.children}
+                </section>
+            </section>
         );
     }
 }

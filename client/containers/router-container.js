@@ -1,23 +1,20 @@
 import React from 'react';
-import { Router, Route } from 'react-router';
+import { Router, Route, Redirect } from 'react-router';
 import { reduxRouteComponent } from 'redux-react-router';
 import { history } from 'react-router/lib/HashHistory';
 import { store } from '../index.js';
+import App from './app-container';
+import LoginForm from './login-form-container';
 
-class Test {
-    render() {
-        return (
-            <div>hi</div>
-        );
-    }
-}
-
-export default class App {
+export default class AppRouter {
     render() {
         return(
             <Router history={history}>
+                <Redirect from='/' to='/login' />
                 <Route component={reduxRouteComponent(store)}>
-                    <Route path='/' component={Test}/>
+                    <Route path='/' component={App}>
+                        <Route path='login' component={LoginForm} />
+                    </Route>
                 </Route>
             </Router>
         );

@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { routerStateReducer } from 'redux-react-router';
 import thunkMiddleware from 'redux-thunk';
-import App from './containers/router-container';
+import AppRouter from './containers/router-container';
 import * as reducers from './reducers';
 
 function loggerMiddleware(next) {
@@ -21,6 +21,6 @@ const finalCreateStore = applyMiddleware(thunkMiddleware, loggerMiddleware)(crea
 export const store = finalCreateStore(reducer, {});
 
 render(
-    <App store={store} />,
+    <AppRouter store={store} />,
     document.getElementById('app-wrapper')
 );
