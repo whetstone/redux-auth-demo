@@ -18,7 +18,7 @@ export default class LoginFormComponent {
     }
 
     render() {
-        const { loginForm: { username } } = this.props;
+        const { loginForm: { username, isLoading } } = this.props;
 
         return (
             <form onSubmit={this.handleFormSubmit}>
@@ -28,7 +28,9 @@ export default class LoginFormComponent {
                 <label htmlFor='password'>Password</label>
                 <input type='password' id='password' ref='password' />
 
-                <input type='submit' />
+                <input type='submit' disabled={isLoading} />
+
+                { isLoading ? <span>Loading...</span> : null }
             </form>
         );
     }

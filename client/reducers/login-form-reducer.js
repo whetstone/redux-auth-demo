@@ -2,6 +2,7 @@ import * as constants from '../constants';
 
 const initialState = {
     username: '',
+    isLoading: false,
 }
 
 export default function(state = initialState, action) {
@@ -13,13 +14,17 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 username: data.username,
+                isLoading: true,
             };
 
         case constants.LOGIN_SUCCEEDED:
-            return state;
+            return initialState;
 
         case constants.LOGIN_FAILED:
-            return state;
+            return {
+                ...state,
+                isLoading: false,
+            };
 
         default:
             return state;
