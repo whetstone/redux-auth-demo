@@ -4,7 +4,8 @@
   "description": "## Initial Requirements",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch server ./server.js"
+    "start": "nodemon --watch server ./server.js",
+    "client": "nodemon --watch server ./client.js"
   },
   "repository": {
     "type": "git",
@@ -26,9 +27,16 @@
     "express": "^4.12.4",
     "express-jwt": "^3.0.1",
     "jsonwebtoken": "^5.0.1",
-    "morgan": "^1.6.1"
+    "morgan": "^1.6.1",
+    "react-dom": "^0.14.0-beta1"
   },
   "devDependencies": {
-    "nodemon": "^1.4.0"
+    "html-webpack-plugin": "^1.6.0",
+    "jscs": "^2.0.0",
+    "node-libs-browser": "^0.5.2",
+    "nodemon": "^1.4.0",
+    "react-hot-loader": "^1.2.8",
+    "webpack": "^1.10.5",
+    "webpack-dev-server": "^1.10.1"
   }
 }
