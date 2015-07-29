@@ -6,7 +6,10 @@ export default function(state = {}, action) {
 
     switch (type) {
         case constants.LOGIN_SUCCEEDED:
-            return state;
+            return {
+                ...state,
+                username: 'test',
+            };
 
         default:
             return state;

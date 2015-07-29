@@ -5,6 +5,7 @@ import { history } from 'react-router/lib/HashHistory';
 import { store } from '../index.js';
 import AppContainer from './app-container';
 import LoginFormContainer from './login-form-container';
+import HomeComponent from '../components/home-component';
 
 export default class AppRouter {
     render() {
@@ -14,6 +15,7 @@ export default class AppRouter {
                 <Route component={reduxRouteComponent(store)}>
                     <Route path='/' component={AppContainer}>
                         <Route path='login' component={LoginFormContainer} />
+                        <Route path='home' component={HomeComponent} />
                     </Route>
                 </Route>
             </Router>

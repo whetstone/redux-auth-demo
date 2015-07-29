@@ -1,5 +1,6 @@
 import * as constants from '../constants';
 import request from '../_config/superagent';
+import { transitionTo } from 'redux-react-router';
 
 export function applicationLoaded(data) {
     return {
@@ -27,10 +28,14 @@ export function loginSubmitted(data) {
 }
 
 export function loginSucceeded(data) {
-    return {
-        type: constants.LOGIN_SUCCEEDED,
-        data,
-    };
+    return dispatch => {
+        dispatch(transitionTo('/home'));
+
+        dispatch({
+            type: constants.LOGIN_SUCCEEDED,
+            data,
+        });
+    }
 }
 
 export function loginFailed(data) {
