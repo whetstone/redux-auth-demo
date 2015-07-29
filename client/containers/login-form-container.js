@@ -4,14 +4,16 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../action-creators';
 import LoginFormComponent from '../components/login-form-component';
 
-@connect(state => state)
+@connect(state => ({
+    loginForm: state.loginForm,
+}))
 export default class LoginFormContainer {
 
     render() {
-        const { dispatch } = this.props;
+        const { dispatch, loginForm } = this.props;
 
         return (
-            <LoginFormComponent {...bindActionCreators(actionCreators, dispatch)} />
+            <LoginFormComponent loginForm={loginForm} {...bindActionCreators(actionCreators, dispatch)} />
         );
     }
 

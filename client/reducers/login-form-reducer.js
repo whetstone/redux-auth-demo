@@ -1,12 +1,19 @@
 import * as constants from '../constants';
 
-export default function(state = {}, action) {
+const initialState = {
+    username: '',
+}
+
+export default function(state = initialState, action) {
 
     const { data, type } = action;
 
     switch (type) {
         case constants.LOGIN_SUBMITTED:
-            return state;
+            return {
+                ...state,
+                username: data.username,
+            };
 
         case constants.LOGIN_SUCCEEDED:
             return state;

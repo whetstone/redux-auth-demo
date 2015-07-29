@@ -12,19 +12,21 @@ export default class LoginFormComponent {
         const { loginSubmitted } = this.props;
 
         loginSubmitted({
-            username: 'test',
-            password: 'test',
+            username: this.refs.username.value,
+            password: this.refs.password.value,
         })
     }
 
     render() {
+        const { loginForm: { username } } = this.props;
+
         return (
             <form onSubmit={this.handleFormSubmit}>
                 <label htmlFor='username'>Username</label>
-                <input id='username' />
+                <input id='username' defaultValue={username} ref='username' />
 
                 <label htmlFor='password'>Password</label>
-                <input id='password' />
+                <input type='password' id='password' ref='password' />
 
                 <input type='submit' />
             </form>
