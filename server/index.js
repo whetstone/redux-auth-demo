@@ -14,6 +14,7 @@ const router = express.Router();
 
 app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
