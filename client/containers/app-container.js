@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class App {
+export default class AppContainer {
     render() {
         return (
             <section>
