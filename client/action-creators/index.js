@@ -18,12 +18,10 @@ export function loginSubmitted(data) {
         return request
             .post('http://localhost:3000/api/session')
             .send(JSON.stringify(data))
-            .end((err, res = {}) => {
-                const { text } = res;
-
+            .end((err, res) => {
                 err ?
-                    dispatch(loginFailed({text})) :
-                    dispatch(loginSucceeded({text}));
+                    dispatch(loginFailed()) :
+                    dispatch(loginSucceeded());
             });
     };
 }
