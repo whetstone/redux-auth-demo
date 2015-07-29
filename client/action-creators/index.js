@@ -1,4 +1,5 @@
 import * as constants from '../constants';
+import request from '../_config/superagent';
 
 export function applicationLoaded(data) {
     return {
@@ -8,9 +9,21 @@ export function applicationLoaded(data) {
 }
 
 export function loginSubmitted(data) {
-    return {
-        type: constants.LOGIN_SUBMITTED,
-        data,
+    return dispatch => {
+        dispatch({
+            type: constants.LOGIN_SUBMITTED,
+            data,
+        });
+
+        return request
+            .post('http://localhost:3000/api/session')
+            .send(JSON.stringify(data))
+            .end((err, res ={}) => {
+                const { body } = res;
+                err ?
+                    dispatch(loginFailed()) :
+                    dispatch(loginSucceeded(body));
+            });
     };
 }
 
