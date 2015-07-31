@@ -3,9 +3,17 @@ import request from '../_config/superagent';
 import { transitionTo } from 'redux-react-router';
 
 export function applicationLoaded(data) {
-    return {
-        type: constants.APPLICATION_LOADED,
-        data,
+    return dispatch => {
+        dispatch({
+            type: constants.APPLICATION_LOADED,
+            data,
+        });
+
+        return request
+            .get('http://localhost:3000/api/user')
+            .end((err, res) => {
+                console.log(err, res);
+            });
     };
 }
 

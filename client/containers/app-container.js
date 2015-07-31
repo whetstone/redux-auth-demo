@@ -9,8 +9,13 @@ import LoginFormComponent from '../components/login-form-component';
   user: state.user,
   loginForm: state.loginForm,
 }))
-
 export default class AppContainer {
+
+  constructor(props) {
+      const { dispatch } = props;
+      dispatch(actionCreators.applicationLoaded());
+  }
+
   render() {
     const { dispatch, user, loginForm, children } = this.props;
 
