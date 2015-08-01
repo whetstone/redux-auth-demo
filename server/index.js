@@ -14,7 +14,11 @@ const router = express.Router();
 
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    origin: true, // TODO: Configure allowed origins
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    credentials: true,
+}));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
