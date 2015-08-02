@@ -77,3 +77,32 @@ export function userFetchFailed(data) {
     data,
   };
 }
+
+export function sessionDeleted(data) {
+  return dispatch => {
+    dispatch({
+      type: constants.SESSION_DELETED,
+      data,
+    });
+
+    return request
+      .del('http://localhost:3000/api/session')
+      .end((err, res) => {
+        err ? dispatch(sessionDeleteFailed()) : dispatch(sessionDeleteSucceeded());
+      });
+  };
+}
+
+export function sessionDeleteSucceeded(data) {
+  return {
+    type: constants.SESSION_DELETE_SUCCEEDED,
+    data,
+  };
+}
+
+export function sessionDeleteFailed(data) {
+  return {
+    type: constants.SESSION_DELETE_FAILED,
+    data,
+  };
+}

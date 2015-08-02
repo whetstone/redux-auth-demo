@@ -24,6 +24,12 @@ export default function (state = initialState, action) {
         username: 'test',
       };
 
+    case constants.SESSION_DELETE_SUCCEEDED:
+      return {
+        ...state,
+        authenticated: false,
+      };
+
     default:
       return state;
   }

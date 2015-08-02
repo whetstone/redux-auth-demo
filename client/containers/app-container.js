@@ -5,11 +5,14 @@ import { connect } from 'react-redux';
 
 import LoginFormComponent from '../components/login-form-component';
 
-@connect(state => ({
-  user: state.user,
-  loginForm: state.loginForm,
-}))
-export default class AppContainer {
+function select(state) {
+  return {
+    user: state.user,
+    loginForm: state.loginForm,
+  };
+}
+
+class AppContainer {
 
   constructor(props) {
       const { dispatch } = props;
@@ -21,11 +24,11 @@ export default class AppContainer {
 
     const headerBlock = user.authenticated ?
       <h1>Logged in as: {user.username}</h1> :
-      <h1>Not logged in.</h1>
+      <h1>Not logged in.</h1>;
 
     const contentBlock = user.authenticated ?
       children :
-      <LoginFormComponent loginForm={loginForm} {...bindActionCreators(actionCreators, dispatch)} />
+      <LoginFormComponent loginForm={loginForm} {...bindActionCreators(actionCreators, dispatch)} />;
 
     return (
       <section>
@@ -40,3 +43,5 @@ export default class AppContainer {
     );
   }
 }
+
+export default connect(select)(AppContainer);
