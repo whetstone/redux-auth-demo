@@ -2,12 +2,16 @@ import React from 'react';
 
 export default class HomeComponent {
 
-    render() {
-        return (
-            <div>
-                Welcome, authenticated user!
-            </div>
-        );
-    }
+  render() {
+    const { tokenDeleted } = this.props;
+
+    return (
+      <div>
+        Welcome, authenticated user!
+
+        <button onClick={tokenDeleted}>Log Out</button>
+      </div>
+    );
+  }
 
 }
