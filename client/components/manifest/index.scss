@@ -1,0 +1,12 @@
+.frame {
+  position: 'absolute';
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: '350px';
+  background: '#eee';
+  word-wrap: 'break-word';
+  padding: '10px';
+  border-left: '1px solid #ddd';
+  over-flow: 'scroll'
+}
