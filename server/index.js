@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 
 import config from './config';
 import session from './resources/session';
+import user from './resources/user';
 
 const app = express();
 const router = express.Router();
@@ -15,9 +16,9 @@ const router = express.Router();
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(cors({
-    origin: true, // TODO: Configure allowed origins
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    credentials: true,
+  origin: true, // TODO: Configure allowed origins
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  credentials: true,
 }));
 app.use(bodyParser.urlencoded({
   extended: true
@@ -27,12 +28,18 @@ app.use(logger('dev'));
 app.use(errorhandler());
 
 const protect = () => {
-  return jwt({secret: config.secret}).unless({path: ['/api/session']});
+  return jwt({
+    secret: config.secret,
+    getToken: function (req) {
+      return req.cookies.token;
+    },
+  }).unless({path: ['/api/session']});
 };
 
 // set up API routing
 app.use('/api', protect(), router);
 router.post('/session', session.create);
+router.get('/user', user.read);
 
 // Handle unauthorized errors gracefully.
 app.use(function (err, req, res, next) {
