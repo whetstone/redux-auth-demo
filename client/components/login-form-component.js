@@ -23,12 +23,12 @@ export default class LoginFormComponent {
         return (
             <form onSubmit={this.handleFormSubmit}>
                 <label htmlFor='username'>Username</label>
-                <input id='username' defaultValue={username} ref='username' />
+                <input type='username' id='username' defaultValue={username} ref='username' />
 
                 <label htmlFor='password'>Password</label>
                 <input type='password' id='password' ref='password' />
 
-                <input type='submit' disabled={isLoading} />
+                <input type='submit' style={{textAlign: 'right',}} disabled={isLoading} />
 
                 { isLoading ? <span>Loading...</span> : null }
             </form>

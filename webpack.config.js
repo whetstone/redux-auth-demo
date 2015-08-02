@@ -2,12 +2,14 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
+var clientPath = path.join(__dirname, 'client');
+
 module.exports = {
   devtool: 'source-map',
   module: {
     loaders: [
       {test: /\.js$/, include: path.join(__dirname, 'client'), loaders: ['react-hot', 'babel']},
-      {test: /\.scss$/, loader: "style!css!sass?sourceMap"}
+      {test: /\.scss$/, include: clientPath, loaders: ['style', 'css', 'sass', 'sourceMap']},
     ],
   },
   entry: [

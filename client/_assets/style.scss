@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: lightgrey;
+  color: #222;
+}
+
+main#app-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+h1 {
+  margin: 0;
+}
+
+label {
+  display: block;
+  text-align: left;
+}
+
+input[type="username"],
+input[type="password"] {
+  width: 100%;
+  margin-bottom: 20px;
+}

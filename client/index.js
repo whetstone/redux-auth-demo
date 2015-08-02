@@ -12,6 +12,8 @@ import thunkMiddleware from 'redux-thunk';
 import AppRouter from './containers/app-router';
 import * as reducers from './reducers';
 
+import './_assets/style.scss';
+
 function loggerMiddleware(next) {
   return next => action => {
     next(action);
@@ -32,10 +34,10 @@ export const store = finalCreateStore(reducer, {});
 
 render(
   <div>
-        <Provider store={store}>
-          {() => <AppRouter />}
-        </Provider>
-        <DevTools store={store} monitor={Manifest}/>
+    <Provider store={store}>
+      {() => <AppRouter />}
+    </Provider>
+    <DevTools store={store} monitor={Manifest}/>
   </div>,
   document.getElementById('app-wrapper')
 );
