@@ -8,8 +8,8 @@ module.exports = {
   devtool: 'source-map',
   module: {
     loaders: [
-      {test: /\.js$/, include: clientPath, loaders: ['react-hot', 'babel']},
-      {test: /\.scss$/, include: clientPath, loaders: ['style', 'css', 'sass']}
+      {test: /\.js$/, include: path.join(__dirname, 'client'), loaders: ['react-hot', 'babel']},
+      {test: /\.scss$/, include: clientPath, loaders: ['style', 'css', 'sass', 'sourceMap']},
     ],
   },
   entry: [
