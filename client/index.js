@@ -9,6 +9,8 @@ import thunkMiddleware from 'redux-thunk';
 import AppRouter from './containers/app-router';
 import * as reducers from './reducers';
 
+import './_assets/style.scss';
+
 function loggerMiddleware(next) {
     return next => action => {
         console.log(action);
@@ -29,7 +31,7 @@ const finalCreateStore = compose(
 export const store = finalCreateStore(reducer, {});
 
 render(
-    <div>
+    <div style={{width: '100%', height: '100%',}}>
         <Provider store={store}>
           {() => <AppRouter />}
         </Provider>

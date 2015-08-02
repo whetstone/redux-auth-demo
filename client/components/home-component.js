@@ -7,8 +7,6 @@ export default class HomeComponent {
 
     return (
       <div>
-        Welcome, authenticated user: {username}!
-
         <button onClick={tokenDeleted}>Log Out</button>
       </div>
     );
