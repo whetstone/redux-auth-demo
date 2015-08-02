@@ -78,60 +78,60 @@ export function userFetchFailed(data) {
   };
 }
 
-export function sessionDeleted(data) {
+export function tokenDeleted(data) {
   return dispatch => {
     dispatch({
-      type: constants.SESSION_DELETED,
+      type: constants.TOKEN_DELETED,
       data,
     });
 
     return request
       .del('http://localhost:3000/api/token')
       .end((err, res) => {
-        err ? dispatch(sessionDeleteFailed()) : dispatch(sessionDeleteSucceeded());
+        err ? dispatch(tokenDeleteFailed()) : dispatch(tokenDeleteSucceeded());
       });
   };
 }
 
-export function sessionDeleteSucceeded(data) {
+export function tokenDeleteSucceeded(data) {
   return {
-    type: constants.SESSION_DELETE_SUCCEEDED,
+    type: constants.TOKEN_DELETE_SUCCEEDED,
     data,
   };
 }
 
-export function sessionDeleteFailed(data) {
+export function tokenDeleteFailed(data) {
   return {
-    type: constants.SESSION_DELETE_FAILED,
+    type: constants.TOKEN_DELETE_FAILED,
     data,
   };
 }
 
-export function sessionUpdated(data) {
+export function tokenUpdated(data) {
   return dispatch => {
     dispatch({
-      type: constants.SESSION_UPDATED,
+      type: constants.TOKEN_UPDATED,
       data,
     });
 
     return request
       .put('http://localhost:3000/api/token')
       .end((err, res) => {
-        err ? dispatch(sessionUpdateFailed()) : dispatch(sessionUpdateSucceeded());
+        err ? dispatch(tokenUpdateFailed()) : dispatch(tokenUpdateSucceeded());
       });
   };
 }
 
-export function sessionUpdateSucceeded(data) {
+export function tokenUpdateSucceeded(data) {
   return {
-    type: constants.SESSION_UPDATE_SUCCEEDED,
+    type: constants.TOKEN_UPDATE_SUCCEEDED,
     data,
   };
 }
 
-export function sessionUpdateFailed(data) {
+export function tokenUpdateFailed(data) {
   return {
-    type: constants.SESSION_UPDATE_FAILED,
+    type: constants.TOKEN_UPDATE_FAILED,
     data,
   };
 }

@@ -3,14 +3,14 @@ import React from 'react';
 export default class HomeComponent {
 
   render() {
-    const { sessionDeleted, sessionUpdated } = this.props;
+    const { tokenDeleted, tokenUpdated } = this.props;
 
     return (
       <div>
         Welcome, authenticated user!
 
-        <button onClick={sessionDeleted}>Log Out</button>
-        <button onClick={sessionUpdated}>Update Session</button>
+        <button onClick={tokenDeleted}>Log Out</button>
+        <button onClick={tokenUpdated}>Update token</button>
       </div>
     );
   }
