@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
-import ManifestAction from './manifest-action-component.js';
+import ManifestAction from './Action';
 import deep from 'deep-diff';
 import './index.scss';
+import classNames from 'classnames'
 
 export default class ManifestComponent {
   static propTypes = {
@@ -22,9 +23,10 @@ export default class ManifestComponent {
 
   render() {
     const actionReports = this.props.stagedActions.map(this.renderAction.bind(this));
+    const frameClasses = classNames('frame');
 
     return (
-      <div style={windowStyle}>
+      <div className={frameClasses}>
         {actionReports.reverse()}
       </div>
     );
@@ -39,38 +41,11 @@ export default class ManifestComponent {
     }
 
     return (
-      <ManifestAction action={action} key={index} diff={diff || []}/>
+      <ManifestAction action={action}
+                      index={index}
+                      key={index}
+                      diff={diff || []}
+                      toggleAction={this.props.toggleAction.bind(this, index)} />
     )
   }
-
-  renderState(state) {
-    const slices = [];
-    for (let key in state.state) {
-      if (state.state.hasOwnProperty(key)) {
-        var obj = state.state[key];
-        slices.push(this.renderSlice(obj));
-      }
-    }
-
-    return (
-      <div>
-        {slices}
-      </div>
-    )
-  }
-
-  renderSlice(slice) {
-    //for (var prop in slice) {
-    //  if(slice.hasOwnProperty(prop)){
-    //    console.log(prop + " = " + slice[prop]);
-    //  }
-    //}
-
-    return (
-      <div>
-        <pre>{JSON.stringify(slice)}</pre>
-      </div>
-    )
-  }
-
 }
