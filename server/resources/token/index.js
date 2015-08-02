@@ -9,12 +9,16 @@ export default {
     if (username === 'test' && password === 'test') {
       let token = jwt.sign({username: username}, config.secret, {
         issuer: 'redux-demo',
-        expiresInMinutes: 60
+        expiresInSeconds: config.jwtExpiresInMinutes,
       });
 
       res.status(201).cookie('token', token).send();
     } else {
       res.status(401).send('Authentication failure.');
     }
-  }
+  },
+
+  delete(req, res) {
+    res.status(204).clearCookie('token').send();
+  },
 }

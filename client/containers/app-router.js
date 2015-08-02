@@ -4,7 +4,7 @@ import { reduxRouteComponent } from 'redux-react-router';
 import { history } from 'react-router/lib/HashHistory';
 import { store } from '../index.js';
 import AppContainer from './app-container';
-import HomeComponent from '../components/home-component';
+import HomeContainer from '../containers/home-container';
 
 export default class AppRouter {
     render() {
@@ -13,7 +13,7 @@ export default class AppRouter {
                 <Redirect from='/' to='/home' />
                 <Route component={reduxRouteComponent(store)}>
                     <Route path='/' component={AppContainer}>
-                        <Route path='home' component={HomeComponent} />
+                        <Route path='home' component={HomeContainer} />
                     </Route>
                 </Route>
             </Router>

@@ -1,25 +1,37 @@
 import * as constants from '../constants';
 
 const initialState = {
-    authenticated: false,
-    username: null
+  authenticated: false,
+  username: null
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action = {}) {
 
-    const { data, type } = action;
+  const { data, type } = action;
 
-    switch (type) {
-        case constants.LOGIN_SUCCEEDED:
-          console.log(123);
-            return {
-                ...state,
-                authenticated: true,
-                username: 'test',
-            };
+  switch (type) {
+    case constants.LOGIN_SUCCEEDED:
+      return {
+        ...state,
+        authenticated: true,
+        username: 'test',
+      };
 
-        default:
-            return state;
-    }
+    case constants.USER_FETCH_SUCCEEDED:
+      return {
+        ...state,
+        authenticated: true,
+        username: 'test',
+      };
+
+    case constants.TOKEN_DELETE_SUCCEEDED:
+      return {
+        ...state,
+        authenticated: false,
+      };
+
+    default:
+      return state;
+  }
 
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-
+import { Provider } from 'react-redux';
 import { devTools, persistState } from 'redux-devtools';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
@@ -32,8 +32,10 @@ export const store = finalCreateStore(reducer, {});
 
 render(
   <div>
-    <AppRouter store={store}/>
-    <DevTools store={store} monitor={Manifest}/>
+        <Provider store={store}>
+          {() => <AppRouter />}
+        </Provider>
+        <DevTools store={store} monitor={Manifest}/>
   </div>,
   document.getElementById('app-wrapper')
 );
