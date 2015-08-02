@@ -6,19 +6,17 @@ export default class ManifestActionComponent extends React.Component {
   constructor() {
     super();
     this.state = {
-      expanded: false,
-      disabled: false
+      expanded: false
     }
   }
 
   render() {
     const {action, diff} = this.props;
-    console.log(action);
     const actionClasses = classNames(
       'action',
       {
         'action--mutated': diff.length > 0,
-        'action--disabled': this.state.disabled
+        'action--disabled': this.props.skipped
       }
     );
 
@@ -41,7 +39,7 @@ export default class ManifestActionComponent extends React.Component {
       null;
 
 
-    const enableToggle = this.state.disabled ?
+    const enableToggle = this.props.skipped ?
       'enable' :
       'disable';
 
@@ -61,12 +59,12 @@ export default class ManifestActionComponent extends React.Component {
     )
   }
 
-  renderDiff(diff) {
+  renderDiff(diff, index) {
     const oldValue = JSON.stringify(diff.lhs);
     const newValue = JSON.stringify(diff.rhs);
 
     return (
-      <span>
+      <span key={index}>
         {diff.path.join('.')}: <span className="old">{oldValue}</span> {newValue}
         <br/>
       </span>
@@ -81,8 +79,5 @@ export default class ManifestActionComponent extends React.Component {
 
   disableAction() {
     this.props.toggleAction(this.props.index);
-    this.setState({
-      disabled: !this.state.disabled
-    })
   }
 }

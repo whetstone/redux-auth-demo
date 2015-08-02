@@ -1,10 +1,21 @@
 import React, { PropTypes } from 'react';
+
 import ManifestAction from './Action';
+import ManifestButton from './Button';
+
 import deep from 'deep-diff';
 import './index.scss';
 import classNames from 'classnames'
+import mousetrap from 'mousetrap';
 
-export default class ManifestComponent {
+export default class ManifestComponent extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      visible: true
+    };
+  }
+
   static propTypes = {
     // Stuff you can use
     computedStates: PropTypes.array.isRequired,
@@ -21,12 +32,39 @@ export default class ManifestComponent {
     jumpToState: PropTypes.func.isRequired // ({ index })
   };
 
+  componentDidMount() {
+    const self = this;
+    Mousetrap.bind(['ctrl+]'], function (e) {
+      self.toggleVisibility();
+      return false;
+    });
+  }
+
+  toggleVisibility() {
+    this.setState({visible: !this.state.visible})
+  }
+
+  componentWillUnmount() {
+    Mousetrap.unbind(['ctrl+]']);
+  }
+
   render() {
     const actionReports = this.props.stagedActions.map(this.renderAction.bind(this));
-    const frameClasses = classNames('frame');
+    const frameClasses = classNames(
+      'frame',
+      {
+        'frame--hidden': this.state.visible === false
+      }
+    );
 
     return (
       <div className={frameClasses}>
+        <div className="frame__header">
+          <ManifestButton label="Commit" action={this.props.commit.bind(this)} />
+          <ManifestButton label="Rollback" action={this.props.rollback.bind(this)} />
+          <ManifestButton label="Reset" action={this.props.reset.bind(this)} />
+
+        </div>
         {actionReports.reverse()}
       </div>
     );
@@ -40,12 +78,20 @@ export default class ManifestComponent {
       diff = deep.diff(oldState, newState);
     }
 
+    const skippingAction = this.props.skippedActions[index]===true;
+
     return (
       <ManifestAction action={action}
                       index={index}
                       key={index}
                       diff={diff || []}
-                      toggleAction={this.props.toggleAction.bind(this, index)} />
+                      skipped={skippingAction}
+                      toggleAction={this.props.toggleAction.bind(this, index)}
+                      jumpTo={this.jumpingTo.bind(this, index)}/>
     )
+  }
+
+  jumpingTo(index) {
+    this.props.jumpToState(index);
   }
 }
