@@ -106,32 +106,3 @@ export function tokenDeleteFailed(data) {
     data,
   };
 }
-
-export function tokenUpdated(data) {
-  return dispatch => {
-    dispatch({
-      type: constants.TOKEN_UPDATED,
-      data,
-    });
-
-    return request
-      .put('http://localhost:3000/api/token')
-      .end((err, res) => {
-        err ? dispatch(tokenUpdateFailed()) : dispatch(tokenUpdateSucceeded());
-      });
-  };
-}
-
-export function tokenUpdateSucceeded(data) {
-  return {
-    type: constants.TOKEN_UPDATE_SUCCEEDED,
-    data,
-  };
-}
-
-export function tokenUpdateFailed(data) {
-  return {
-    type: constants.TOKEN_UPDATE_FAILED,
-    data,
-  };
-}
