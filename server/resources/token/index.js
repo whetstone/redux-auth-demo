@@ -9,7 +9,7 @@ export default {
     if (username === 'test' && password === 'test') {
       let token = jwt.sign({username: username}, config.secret, {
         issuer: 'redux-demo',
-        expiresInSeconds: 10,
+        expiresInSeconds: 60,
       });
 
       res.status(201).cookie('token', token).send();
@@ -19,16 +19,20 @@ export default {
   },
 
   update(req, res) {
-    const { cookies: { token: decoded } } = req;
+    const { cookies: { token: requestToken } } = req;
+    const decodedTokenPayload = jwt.decode(requestToken);
+    const { username } = decodedTokenPayload;
 
-    if (!decoded) {
+    if (!username) {
       return res.status(401).send('Invalid token');
     }
 
-    const token = jwt.sign({username: decoded.payload.username}, config.secret, {
+    const updatedToken = jwt.sign({username: username}, config.secret, {
       issuer: 'redux-demo',
-      expiresInSeconds: 10,
+      expiresInSeconds: 60,
     });
+
+    res.status(204).cookie('token', updatedToken).send();
   },
 
   delete(req, res) {

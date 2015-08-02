@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 
 import config from './config';
-import session from './resources/session';
+import token from './resources/token';
 import user from './resources/user';
 
 const app = express();
@@ -33,14 +33,14 @@ const protect = () => {
     getToken: function (req) {
       return req.cookies.token;
     },
-  }).unless({path: ['/api/session']});
+  }).unless({path: ['/api/token']});
 };
 
 // set up API routing
 app.use('/api', protect(), router);
-router.post('/session', session.create);
-router.put('/session', session.update);
-router.delete('/session', session.delete);
+router.post('/token', token.create);
+router.put('/token', token.update);
+router.delete('/token', token.delete);
 router.get('/user', user.read);
 
 // Handle unauthorized errors gracefully.

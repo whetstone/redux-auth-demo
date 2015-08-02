@@ -25,7 +25,7 @@ export function loginSubmitted(data) {
     });
 
     return request
-      .post('http://localhost:3000/api/session')
+      .post('http://localhost:3000/api/token')
       .send(JSON.stringify(data))
       .end((err, res) => {
         err ?
@@ -86,7 +86,7 @@ export function sessionDeleted(data) {
     });
 
     return request
-      .del('http://localhost:3000/api/session')
+      .del('http://localhost:3000/api/token')
       .end((err, res) => {
         err ? dispatch(sessionDeleteFailed()) : dispatch(sessionDeleteSucceeded());
       });
@@ -103,6 +103,35 @@ export function sessionDeleteSucceeded(data) {
 export function sessionDeleteFailed(data) {
   return {
     type: constants.SESSION_DELETE_FAILED,
+    data,
+  };
+}
+
+export function sessionUpdated(data) {
+  return dispatch => {
+    dispatch({
+      type: constants.SESSION_UPDATED,
+      data,
+    });
+
+    return request
+      .put('http://localhost:3000/api/token')
+      .end((err, res) => {
+        err ? dispatch(sessionUpdateFailed()) : dispatch(sessionUpdateSucceeded());
+      });
+  };
+}
+
+export function sessionUpdateSucceeded(data) {
+  return {
+    type: constants.SESSION_UPDATE_SUCCEEDED,
+    data,
+  };
+}
+
+export function sessionUpdateFailed(data) {
+  return {
+    type: constants.SESSION_UPDATE_FAILED,
     data,
   };
 }
