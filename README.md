@@ -2,13 +2,12 @@
 
 ## Initial Requirements
 
-- [ ] The API will accept a POST request to /auth containing username/password, and successfully return either a JWT token for a valid authentication request, or reject a failed request with a 401 error.
-- [ ] The front end default route will check the presence of a JWT token in localStorage; if it exists it will attempt to continue with that token to resume a sesssion.
-- [ ] The front end default route will detect the absence of a stored token, and route to the login view.
-- [ ] The front end login view will accept a username and password entry, and submit the request to the API POST /auth route to attempt to create a session.
+- [x] The API will accept a POST request to /session containing username/password, and successfully return either a JWT token as a cookie for a valid authentication request, or reject a failed request with a 401 error.
+- [ ] The front end will assume authentication and attempt to retrieve user details from /user. If no token cookie has been set, the /user endpoint will return a 401 and the UI will display the login form. If a token cookie is present, the /user endpoint will return user details based on the user, and the app will load.
+- [ ] The front end login view will accept a username and password entry, and submit the request to the API POST /session route to attempt to create a session.
 - [ ] A successful front end login request will trigger a redux reducer to store the current user's login attributes.
-- [ ] When utilizing the application, API requests will have the JWT token injected from localStorage; if it ever expires or fails, a 401 response from the API will cause the session reducer to reset to the initial state.
 - [ ] When the session reducer is in the initial state – whether via a reset, or application load –  the application will route to the login view.
+- [ ] Front end can DELETE /session to invalidate the token and log the user out.
 
 ### Bonus Round
 
