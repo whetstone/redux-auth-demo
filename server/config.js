@@ -1,3 +1,4 @@
 export default {
-  secret: 'mysupersecretthing'
+  secret: 'mysupersecretthing',
+  jwtExpiresInMinutes: 10,
 };
