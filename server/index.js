@@ -39,6 +39,8 @@ const protect = () => {
 // set up API routing
 app.use('/api', protect(), router);
 router.post('/session', session.create);
+router.put('/session', session.update);
+router.delete('/session', session.delete);
 router.get('/user', user.read);
 
 // Handle unauthorized errors gracefully.
