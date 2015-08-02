@@ -12,7 +12,7 @@ export default {
         expiresInMinutes: 60
       });
 
-      res.status(201).cookie('radToken', token).send();
+      res.status(201).cookie('token', token).send();
     } else {
       res.status(401).send('Authentication failure.');
     }
