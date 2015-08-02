@@ -5,7 +5,7 @@ const initialState = {
   username: null
 };
 
-export default function (state = initialState, action) {
+export default function (state = initialState, action = {}) {
 
   const { data, type } = action;
 
