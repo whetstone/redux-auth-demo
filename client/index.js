@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { devTools, persistState } from 'redux-devtools';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
-import Manifest from './components/Manifest';
+import Manifest from './components/manifest';
 
 import { routerStateReducer } from 'redux-react-router';
 import thunkMiddleware from 'redux-thunk';
