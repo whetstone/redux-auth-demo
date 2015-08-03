@@ -12,6 +12,8 @@ import thunkMiddleware from 'redux-thunk';
 import AppRouter from './containers/app-router';
 import * as reducers from './reducers';
 
+import './_assets/style.scss';
+
 function loggerMiddleware(next) {
   return next => action => {
     next(action);
