@@ -52,9 +52,10 @@
     "react-hot-loader": "^1.2.8",
     "react-redux": "^0.2.2",
     "redux": "^1.0.0-rc",
+    "redux-devtools": "~0.1.2",
+    "redux-devtools-diff-monitor": "^0.1.7",
     "redux-thunk": "^0.1.0",
     "webpack": "^1.10.5",
-    "webpack-dev-server": "^1.10.1",
-    "redux-devtools": "~0.1.2"
+    "webpack-dev-server": "^1.10.1"
   }
 }

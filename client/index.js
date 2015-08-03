@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { devTools, persistState } from 'redux-devtools';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
-import Manifest from './components/manifest';
+import DiffMonitor from 'redux-devtools-diff-monitor';
 
 import { routerStateReducer } from 'redux-react-router';
 import thunkMiddleware from 'redux-thunk';
@@ -35,7 +35,7 @@ render(
         <Provider store={store}>
           {() => <AppRouter />}
         </Provider>
-        <DevTools store={store} monitor={Manifest}/>
+        <DevTools store={store} monitor={DiffMonitor} />
   </div>,
   document.getElementById('app-wrapper')
 );
