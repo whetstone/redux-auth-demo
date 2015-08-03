@@ -10,21 +10,14 @@ export default function (state = initialState, action = {}) {
   const { data, type } = action;
 
   switch (type) {
-    case constants.LOGIN_SUCCEEDED:
-      return {
-        ...state,
-        authenticated: true,
-        username: 'test',
-      };
-
     case constants.USER_FETCH_SUCCEEDED:
       return {
         ...state,
         authenticated: true,
-        username: 'test',
+        username: data.username,
       };
 
-    case constants.TOKEN_DELETE_SUCCEEDED:
+    case constants.TOKEN_DELETE_FAILED:
       return {
         ...state,
         authenticated: false,

@@ -24,15 +24,21 @@ class AppContainer {
 
     const headerBlock = user.authenticated ?
       <h1>Logged in as: {user.username}</h1> :
-      <h1>Not logged in.</h1>;
+      <h1>Please Log In</h1>;
 
     const contentBlock = user.authenticated ?
       children :
       <LoginFormComponent loginForm={loginForm} {...bindActionCreators(actionCreators, dispatch)} />;
 
     return (
-      <section>
-        <header>
+      <section style={{
+        width: '100%',
+        height: '100%',
+        margin: 'auto',
+        maxWidth: '980px',
+        textAlign: 'center',
+      }}>
+        <header style={{padding: '20px 0',}}>
           {headerBlock}
         </header>
 

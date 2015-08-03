@@ -11,8 +11,12 @@ export function applicationLoaded(data) {
 
     return request
       .get('http://localhost:3000/api/user')
-      .end((err, res) => {
-        err ? dispatch(userFetchFailed()) : dispatch(userFetchSucceeded());
+      .end((err, res={}) => {
+        const { body } = res;
+
+        err ?
+          dispatch(userFetchFailed()) :
+          dispatch(userFetchSucceeded(body));
       });
   };
 }
@@ -30,15 +34,8 @@ export function loginSubmitted(data) {
       .end((err, res) => {
         err ?
           dispatch(loginFailed()) :
-          dispatch(loginSucceeded());
+          window.location.reload();
       });
-  };
-}
-
-export function loginSucceeded(data) {
-  return {
-    type: constants.LOGIN_SUCCEEDED,
-    data,
   };
 }
 
@@ -58,8 +55,12 @@ export function userFetched(data) {
 
     return request
       .get('http://localhost:3000/api/user')
-      .end((err, res) => {
-        err ? dispatch(userFetchFailed()) : dispatch(userFetchSucceeded());
+      .end((err, res={}) => {
+        const { body } = res;
+
+        err ?
+          dispatch(userFetchFailed()) :
+          dispatch(userFetchSucceeded(body));
       });
   };
 }
@@ -88,15 +89,10 @@ export function tokenDeleted(data) {
     return request
       .del('http://localhost:3000/api/token')
       .end((err, res) => {
-        err ? dispatch(tokenDeleteFailed()) : dispatch(tokenDeleteSucceeded());
+        err ?
+          dispatch(tokenDeleteFailed()) :
+          window.location.reload();
       });
-  };
-}
-
-export function tokenDeleteSucceeded(data) {
-  return {
-    type: constants.TOKEN_DELETE_SUCCEEDED,
-    data,
   };
 }
 
